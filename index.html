@@ -5,68 +5,238 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git Branch Workflow</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background: #f3eefb;
+            background: linear-gradient(135deg, #f8f5ff, #eee6fa, #faf7f0);
             color: #34254d;
-            text-align: center;
-            padding: 80px 20px;
+            padding: 60px 20px;
         }
 
-        .card {
-            max-width: 600px;
+        .container {
+            max-width: 950px;
             margin: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+            color: #65458f;
+        }
+
+        .header p {
+            color: #81738f;
+            font-size: 16px;
+        }
+
+        .main-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
             padding: 40px;
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px #34254d20;
+            box-shadow: 0 15px 45px rgba(78, 52, 112, 0.10);
+            backdrop-filter: blur(15px);
         }
 
-        h1 {
+        .status {
+            display: inline-block;
+            padding: 9px 17px;
+            background: #eee5fa;
             color: #7652a8;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
         }
 
-        p {
-            line-height: 1.7;
+        .description {
+            line-height: 1.8;
+            color: #756b82;
+            margin: 20px 0 30px;
+        }
+
+        h2 {
+            color: #50396e;
+            font-size: 23px;
+            margin-bottom: 20px;
         }
 
         nav {
-            margin: 25px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 40px;
         }
 
-        a {
-            display: inline-block;
-            margin: 8px;
-            padding: 12px 24px;
-            border-radius: 10px;
+        nav a {
+            text-decoration: none;
+            padding: 13px 22px;
+            border-radius: 12px;
             background: #7652a8;
             color: white;
-            text-decoration: none;
+            transition: 0.3s;
+            font-size: 14px;
         }
 
-        a:hover {
-            background: #5d3c8e;
+        nav a:hover {
+            background: #58377f;
+            transform: translateY(-3px);
+        }
+
+        .participants {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .participant {
+            background: #faf8fd;
+            border: 1px solid #eee5f7;
+            border-radius: 20px;
+            padding: 25px 20px;
+            transition: 0.3s;
+        }
+
+        .participant:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(92, 59, 132, 0.12);
+            border-color: #cdb8e9;
+        }
+
+        .number {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eee5fa;
+            color: #7652a8;
+            border-radius: 13px;
+            font-weight: bold;
+            margin-bottom: 17px;
+        }
+
+        .participant h3 {
+            color: #50396e;
+            margin: 0 0 10px;
+            font-size: 19px;
+        }
+
+        .participant p {
+            color: #92879f;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .participant a {
+            display: inline-block;
+            text-decoration: none;
+            color: #7652a8;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .participant a:hover {
+            color: #4f3277;
+        }
+
+        footer {
+            text-align: center;
+            color: #968ba2;
+            font-size: 13px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 30px 15px;
+            }
+
+            .main-card {
+                padding: 25px 20px;
+            }
+
+            .header h1 {
+                font-size: 29px;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="card">
-        <h1>Git Branch Workflow</h1>
-        <p>Бұл жоба Git жүйесіндегі тармақтармен жұмыс істеуді үйренуге арналған.</p>
-        <p>Қазіргі тармақ: feature-update</p>
+    <div class="container">
 
-        <h2>Сайт навигациясы</h2>
-        <nav>
-            <a href="index.html">Басты бет</a>
-            <a href="participant.html">Қатысушы беті</a>
-        </nav>
+        <header class="header">
+            <h1>Git Branch Workflow</h1>
+            <p>Бірлескен жұмыс және Git технологияларын үйрену</p>
+        </header>
 
-        <h2>Қатысушылардың жұмыстары</h2>
-        <a href="PaxMeTxaH-favorite-hero.html">
-            Рахметхан — Менің сүйікті кейіпкерім
-        </a>
+        <main class="main-card">
+
+            <span class="status">● Project in progress</span>
+
+            <p class="description">
+                Бұл жоба Git жүйесіндегі тармақтармен жұмыс істеуді,
+                GitHub арқылы бірлесіп код жазуды және жобаларды
+                басқаруды үйренуге арналған.
+            </p>
+
+            <h2>Сайт навигациясы</h2>
+
+            <nav>
+                <a href="index.html">Басты бет</a>
+                <a href="participant.html">Қатысушы беті</a>
+            </nav>
+
+            <h2>Жоба қатысушылары</h2>
+
+            <div class="participants">
+
+                <div class="participant">
+                    <div class="number">01</div>
+                    <h3>Рахметхан</h3>
+                    <p>Жеке жобасы мен жұмыстары</p>
+                    <a href="PaxMeTxaH-favorite-hero.html">
+                        Жұмысын көру →
+                    </a>
+                </div>
+
+                <div class="participant">
+                    <div class="number">02</div>
+                    <h3>Айкен</h3>
+                    <p>Жеке жобасы мен жұмыстары</p>
+                    <a href="participant.html">
+                        Жұмысын көру →
+                    </a>
+                </div>
+
+                <div class="participant">
+                    <div class="number">03</div>
+                    <h3>Анеля</h3>
+                    <p>Жеке жобасы мен жұмыстары</p>
+                    <a href="participant.html">
+                        Жұмысын көру →
+                    </a>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            © 2026 Git Branch Workflow Project
+        </footer>
+
     </div>
 </body>
 </html>
